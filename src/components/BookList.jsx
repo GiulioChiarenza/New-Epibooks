@@ -3,7 +3,7 @@ import SingleBook from './SingleBook'
 import { Col, Form, Row } from 'react-bootstrap'
 import CommentArea from './CommentArea'
 
-const BookList=()=> {
+const BookList=(props)=> {
   const[searchQuery, setsearchQuery]= useState('')
   const[selectedBook, setselectedBook]= useState(null)
   // state = {
@@ -11,7 +11,7 @@ const BookList=()=> {
   //   selectedBook: null,
   // }
 
-  changeSelectedBook = (asin) => {
+ const changeSelectedBook = (asin) => {
     setselectedBook(asin)
     // this.setState({
     //   selectedBook: asin,
@@ -39,7 +39,7 @@ const BookList=()=> {
               </Col>
             </Row>
             <Row className="g-2 mt-3">
-              {books
+              {props.books
                 .filter((b) =>
                   b.title.toLowerCase().includes(searchQuery.toLowerCase())
                 )

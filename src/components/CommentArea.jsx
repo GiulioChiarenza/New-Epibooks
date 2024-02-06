@@ -4,7 +4,7 @@ import AddComment from './AddComment'
 import Loading from './Loading'
 import Error from './Error'
 
-const CommentArea=()=> {
+const CommentArea=(props)=> {
   const[comments,setcomments]= useState([])
   const[isLoading,setisLoading]= useState(false)
   const[isError,setisError]= useState(false)
@@ -40,13 +40,13 @@ const CommentArea=()=> {
   //   }
   // }
 useEffect(()=>{
-   async () => {
+ const fetchComments=  async () => {
     
       setisLoading(true)
       try {
         let response = await fetch(
           'https://striveschool-api.herokuapp.com/api/comments/' +
-            asin,
+            props.asin,
           {
             headers: {
               Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMwZDg0ZGUwODVmYTAwMTk2MzFhMmMiLCJpYXQiOjE3MDcxMzcxMDEsImV4cCI6MTcwODM0NjcwMX0.fDeNIskXwXmS2dbKks7M9Xh0D0ClSNxGX0leXchE0vk',
@@ -72,7 +72,7 @@ useEffect(()=>{
         
       }
     }
-  }, [asin])
+  }, [props.asin])
   // componentDidUpdate = async (prevProps) => {
   //   if (prevProps.asin !== this.props.asin) {
   //     this.setState({
@@ -111,7 +111,7 @@ useEffect(()=>{
       <div className="text-center">
         {isLoading && <Loading />}
         {isError && <Error />}
-        <AddComment asin={asin} />
+        <AddComment asin={props.asin} />
         <CommentList commentsToShow={comments} />
       </div>
     )

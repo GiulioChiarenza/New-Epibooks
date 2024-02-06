@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { Card } from 'react-bootstrap'
 // import CommentArea from './CommentArea'
 
-const SingleBook=()=> {
+const SingleBook=({book, selectedBook, changeSelectedBook})=> {
   // state = {
   //   selected: false,
   // }
